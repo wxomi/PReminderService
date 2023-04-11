@@ -8,7 +8,8 @@ const sendBasicEmail = async (mailTo, mailSubject, mailBody) => {
     await sender.sendMail({
       to: mailTo,
       subject: "Ticket Confirmation",
-      text: "Hi your is confirmed you'll get a reminder on the day of Flight",
+      text: `Hi, 
+      your is confirmed you'll get a reminder on the day of Flight`,
     });
   } catch (error) {
     console.log(error);
@@ -45,6 +46,9 @@ const updateTicket = async (ticketId, data) => {
 const subscribeEvents = async (payload) => {
   let service = payload.service;
   let data = payload.data;
+  data.content = data.content.toString();
+  // .content.toString();
+  // data.content = JSON.stringify(data.content);
   switch (service) {
     case "CREATE_TICKET":
       await sendBasicEmail(data.recepientEmail, data.subject, data.content);

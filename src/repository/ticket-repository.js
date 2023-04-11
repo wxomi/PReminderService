@@ -13,7 +13,9 @@ class TicketRepository {
 
   async create(data) {
     try {
+      console.log(data);
       const ticket = await NotificationTicket.create(data);
+
       return ticket;
     } catch (error) {
       throw error;

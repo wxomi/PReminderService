@@ -5,6 +5,8 @@ const EmailService = require("./services/email-service");
 
 const { createChannel, subscribeMessage } = require("./utils/messageQueue");
 const { PORT, REMINDER_BINDING_KEY } = require("./config/serverConfig");
+// const db = require("./models/index");
+// const { Sequelize } = require("sequelize");
 
 const setupAndStartServer = async () => {
   const app = express();
@@ -18,6 +20,8 @@ const setupAndStartServer = async () => {
 
   app.listen(PORT, () => {
     jobs();
+    // db.sequelize.sync({ alter: true });
+
     console.log("Server started at Port: ", PORT);
   });
 };
